@@ -74,7 +74,7 @@ const config = {
   NEWSLETTER_JID: '120363427108046852@newsletter',
   NEWSLETTER_MESSAGE_ID: '428',
   OTP_EXPIRY: 300000,
-  MONGODB_URL: 'mongodb+srv://ccransika_db_user:Pc1u7xrzGEn4LJvw@cluster0.sntej6n.mongodb.net/CHAMA-NEW-BOTS', 
+  MONGODB_URL: 'mongodb+srv://dct-dula:dct-ninja-x-md@dctninja.gxfynay.mongodb.net/?appName=dctninja', 
   CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbCi5BT5a23yioUIOp1w'
 };
 
