@@ -1420,12 +1420,12 @@ END:VCARD`
         case 'menu':
         case 'help':
         case 'list': {
-            await socket.sendMessage(sender, { react: { text: '📜', key: msg.key } });
+            await socket.sendMessage(sender, { react: { text: '🧚‍♂️', key: msg.key } });
 
             const prefixUsed = sessionConfig.PREFIX || config.PREFIX || '.';
             const userMention = `@${sender.split('@')[0]}`;
-            const botName = sessionConfig.BOT_NAME || config.BOT_NAME || 'CHAMA-SHIELD';
-            const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '💎 MADUSANKA-MD';
+            const botName = sessionConfig.BOT_NAME || config.BOT_NAME || 'MADUSANKA-MD';
+            const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '🧚‍♂️ MADUSANKA-MD';
 
             let menuText = `*╭───❪ 💎 ${botName.toUpperCase()} MENU 💎 ❫───*\n` +
                 `*│* 👤 *User:* ${userMention}\n` +
