@@ -6078,7 +6078,7 @@ case 'ping': {
 │   ├── [MEMORY]    : ${usedMB} MB (Allocated)
 │   └── [HOST OS]   : ${os.platform()} (${os.arch()})
 │
-└─── 🧚‍♂️ *CHAMA-SHIELD SPEED CORE* ───┘
+└─── 🧚‍♂️ *MADUSANKA-MD SPEED CORE* ───┘
 > ${sessionConfig.BOT_FOOTER || config.BOT_FOOTER || 'MADUSANKA-MD BOT'}`;
 
     await socket.sendMessage(sender, { 
