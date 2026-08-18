@@ -1,2 +1,0 @@
-# CINE-HUB
-CINEHUB
