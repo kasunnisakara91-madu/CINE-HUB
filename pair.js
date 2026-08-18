@@ -1427,11 +1427,11 @@ END:VCARD`
             const botName = sessionConfig.BOT_NAME || config.BOT_NAME || 'MADUSANKA-MD';
             const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '🧚‍♂️ MADUSANKA-MD';
 
-            let menuText = `*╭───❪ 💎 ${botName.toUpperCase()} MENU 💎 ❫───*\n` +
+            let menuText = `*╭───❪ 🧚‍♂️ ${botName.toUpperCase()} MENU 🧚‍♂️ ❫───*\n` +
                 `*│* 👤 *User:* ${userMention}\n` +
                 `*│* ⚡ *Prefix:* \`${prefixUsed}\`\n` +
                 `*│* 🤖 *Engine:* _${botName}_\n` +
-                `*│* 💖 *Developer:* _MADUSANKA-MD_\n` +
+                `*│* 💖 *Developer:* _MADUSANKA_\n` +
                 `*╰─────────────────────────────*\n\n` +
 
                 `*╭───〔 🎬 MOVIE & TV SERIES ENGINE 〕───*\n` +
