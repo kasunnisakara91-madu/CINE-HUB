@@ -438,7 +438,7 @@ export default function App() {
             <QrCode className="h-8 w-8 text-[#5a73a3] dark:text-[#8ea9db] animate-soft-float" />
             <div>
               <h1 className="text-xl font-black tracking-wider text-slate-800 dark:text-slate-100">
-                CHAMA-SHIELD
+                𝐌𝐀𝐃𝐔𝐒𝐀𝐍𝐊𝐀-𝐌𝐃 𝐕2
               </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400">Lightweight Bot Control Center</p>
             </div>
