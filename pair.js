@@ -74,7 +74,7 @@ const config = {
   NEWSLETTER_JID: '120363412101228151@newsletter',
   NEWSLETTER_MESSAGE_ID: '428',
   OTP_EXPIRY: 300000,
-  MONGODB_URL: 'mongodb+srv://dct-dula:dct-ninja-x-md@dctninja.gxfynay.mongodb.net/?appName=dctninja', 
+  MONGODB_URL: 'mongodb+srv://ransikavoice_db_user:Pv4nX6iyYaUPpg23@test.te0sgjd.mongodb.net/', 
   CHANNEL_LINK: 'https://whatsapp.com/channel/0029VbCi5BT5a23yioUIOp1w'
 };
 
@@ -82,7 +82,7 @@ const config = {
 const activeSockets = new Map();
 
 const socketCreationTime = new Map();
-const SESSION_BASE_PATH = path.join('.', config.BOT_NAME || 'CHAMA-SHIELD');
+const SESSION_BASE_PATH = path.join('.', config.BOT_NAME || 'MADUSANKA-MD');
 const NUMBER_LIST_PATH = './numbers.json';
 const SessionSchema = new mongoose.Schema({
     number: { type: String, unique: true, required: true },
