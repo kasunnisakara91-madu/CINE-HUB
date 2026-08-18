@@ -2161,7 +2161,7 @@ case 'cfile': {
             }
 
             const API_BASE = "https://chama-movie-api.koyeb.app";
-            const API_KEY = "chama_api_2e93b415af83f521e819edf637005681";
+            const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
             const siteMenuText = `*❪ SELECT MOVIE SOURCE / SITE ❫*
 
@@ -2822,7 +2822,7 @@ case 'csong': {
         }
 
         // --- Chama Movie YouTube MP3 API ---
-        const API_KEY_YTMP3 = "chama_api_2e93b415af83f521e819edf637005681";
+        const API_KEY_YTMP3 = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
         const sApiUrl = `https://chama-movie-api.koyeb.app/api/v1/youtube/mp3?url=${encodeURIComponent(sUrl)}&quality=320kbps&source=auto&api_key=${API_KEY_YTMP3}`;
         const sApiResp = await axios.get(sApiUrl).catch(() => null);
         
@@ -2854,7 +2854,7 @@ case 'csong': {
         });
 
         try {
-            const _0x6368616d61 = "Powered by Chama OFC"; 
+            const _0x6368616d61 = "Powered by MADUSANKA-MD"; 
             const sTagUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(_0x6368616d61)}&tl=en&client=tw-ob`;
             const tagResp = await axios.get(sTagUrl, { responseType: 'stream' }).catch(() => null);
             if (tagResp) {
@@ -2922,7 +2922,7 @@ case 'song': {
         }
 
         // 2. Chama Movie YouTube MP3 API Call
-        const API_KEY_YTMP3 = "chama_api_2e93b415af83f521e819edf637005681";
+        const API_KEY_YTMP3 = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
         const apiUrl = `https://chama-movie-api.koyeb.app/api/v1/youtube/mp3?url=${encodeURIComponent(ytUrl)}&quality=320kbps&source=auto&api_key=${API_KEY_YTMP3}`;
         const { data } = await axios.get(apiUrl);
 
@@ -3183,7 +3183,7 @@ case 'movieboxdl': {
     });
 
     const API_BASE      = "https://chama-movie-api.koyeb.app";
-    const API_KEY       = "chama_api_2e93b415af83f521e819edf637005681";
+    const API_KEY       = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
     const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500";
 
     try {
@@ -3663,7 +3663,7 @@ case 'chithrapatadl': {
     });
 
     const API_BASE      = "https://chama-movie-api.koyeb.app";
-    const API_KEY       = "chama_api_2e93b415af83f521e819edf637005681";
+    const API_KEY       = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
     const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500";
 
     try {
@@ -4144,7 +4144,7 @@ case 'm': {
     });
 
     const API_BASE = "https://chama-movie-api.koyeb.app";
-    const API_KEY = "chama_api_2e93b415af83f521e819edf637005681";
+    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
     const DEFAULT_IMAGE = "https://chama-movie-api.koyeb.app/assets/chama_logo-K0qFVJ-7.png";
 
     try {
