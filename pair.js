@@ -70,7 +70,6 @@ const config = {
   BOT_FOOTER: '♠ MADUSANKA-MD ♠',
   MODE: 'public', 
   MAX_RETRIES: 3,
-  GROUP_INVITE_LINK: 'https://chat.whatsapp.com/DJ8BqsEt4AL2MfS2m7ePR1?s',
   ADMIN_LIST_PATH: './admin.json',
   NEWSLETTER_JID: '120363412101228151@newsletter',
   NEWSLETTER_MESSAGE_ID: '428',
