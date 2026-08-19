@@ -1592,7 +1592,7 @@ _System changes applied successfully._`;
 break; 
 case 'forward':
 case 'fv': {
-    const DEFAULT_FOOTER = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '🛡️ CHAMA-SHIELD';
+    const DEFAULT_FOOTER = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '🛡️ MADUSANKA-MD 🧚‍♂️';
     const from = sender;
 
     const quotedInfo = msg.message?.extendedTextMessage?.contextInfo ||
@@ -2266,7 +2266,7 @@ case 'cfile': {
 
                 // TV Series Options Flow
                 if ((!validDownloads || validDownloads.length === 0) && episodes && episodes.length > 0) {
-                    let modeText = `*❪ TV SERIES DOWNLOAD OPTIONS ❫*\n\n📺 *TV Series:* _${movieInfo?.title || selectedItem.title}_\n🎯 *Target Chat:* \`${targetJid}\`\n🗿 *Source Site:* ${site.toUpperCase()}\n📊 *Total Episodes:* ${episodes.length}\n\n*1️⃣* ➜ 📦 *DOWNLOAD ALL EPISODES (BULK)*\n*2️⃣* ➜ 🎬 *SELECT SINGLE EPISODE*\n\n*👇 REPLY WITH A NUMBER (1 OR 2) 👇*\n\n> 🎭 CHAMA CINE HUB 🎭`;
+                    let modeText = `*❪ TV SERIES DOWNLOAD OPTIONS ❫*\n\n📺 *TV Series:* _${movieInfo?.title || selectedItem.title}_\n🎯 *Target Chat:* \`${targetJid}\`\n🗿 *Source Site:* ${site.toUpperCase()}\n📊 *Total Episodes:* ${episodes.length}\n\n*1️⃣* ➜ 📦 *DOWNLOAD ALL EPISODES (BULK)*\n*2️⃣* ➜ 🎬 *SELECT SINGLE EPISODE*\n\n*👇 REPLY WITH A NUMBER (1 OR 2) 👇*\n\n> 🎭 MADUSANKA CINE HUB 🎭`;
 
                     const modeMsg = await socket.sendMessage(from, { text: modeText }, { quoted: mm });
                     const modeReply = await waitForReply(from, (body) => ['1', '2'].includes(body));
@@ -6229,7 +6229,7 @@ case 'ginfo': {
                 const num = (idx + 1) < 10 ? `0${idx + 1}` : `${idx + 1}`;
                 listText += `*${num}* ➜ 📌 *${g.subject}*\n🆔 \`${g.id}\` | 👥 Members: ${g.participants.length}\n\n`;
             });
-            listText += `> 💡 _Use \`.groupstatus <group_id>\` to view detailed group status!_\n> 🎭 CHAMA SHIELD 🎭`;
+            listText += `> 💡 _Use \`.groupstatus <group_id>\` to view detailed group status!_\n> 🎭 MADUSANKA-MD 🎭`;
 
             return await reply(listText);
         }
@@ -6450,7 +6450,7 @@ case 'setfulldp': {
             ]
         });
 
-        let botName = sessionConfig.botName || 'CHAMA-SHIELD';
+        let botName = sessionConfig.botName || 'MADUSANKA-MD';
 
         await socket.sendMessage(sender, {
             text: `✅ *Profile Picture Updated!*\n_Full photo kept — nothing cropped._\n\n> *${botName}*`
@@ -7571,7 +7571,7 @@ router.get('/help', (req, res) => {
         </div>
 
         <footer>
-            <p>🕊️ Powered by CHAMA-SHIELD MD Control Engine</p>
+            <p>🕊️ Powered by MADUSANKA-MD MD Control Engine</p>
         </footer>
     </div>
 
@@ -7749,7 +7749,7 @@ router.get('/api/get-settings', async (req, res) => {
                 askCityMsg: currentSettings.ASK_CITY_MSG || '📍 *ගම/නගරය :*',
                 askAgeMsg: currentSettings.ASK_AGE_MSG || '🔢 *වයස :*',
                 askGenderMsg: currentSettings.ASK_GENDER_MSG || '🙋 *Girl ද? Boy ද?*',
-                welcomeConnectMsg: currentSettings.WELCOME_CONNECT_MSG || `🧚‍♂️ *MADUSANKA-MD ᴄᴏɴɴᴇᴄᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ* 🧚‍♂️\n\n👋 Hello! Your CHAMA-SHIELD WhatsApp Bot has been successfully linked and is now running online.\n\n🌐 *ᴡᴇʙ ᴅᴀsʜʙᴏᴀʀᴅ ᴜʀʟ:* ${getPublicUrl()}\n🔑 *ʟᴏɢɪɴ ᴘɪɴ:* {pin}\n\n> ⚠️ *Important:* Please keep this PIN secret. Use it to log in to your web panel and manage your bot settings, auto-saved contacts, and anti-delete logs.`,
+                welcomeConnectMsg: currentSettings.WELCOME_CONNECT_MSG || `🧚‍♂️ *MADUSANKA-MD ᴄᴏɴɴᴇᴄᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ* 🧚‍♂️\n\n👋 Hello! Your MADUSANKA-MD WhatsApp Bot has been successfully linked and is now running online.\n\n🌐 *ᴡᴇʙ ᴅᴀsʜʙᴏᴀʀᴅ ᴜʀʟ:* ${getPublicUrl()}\n🔑 *ʟᴏɢɪɴ ᴘɪɴ:* {pin}\n\n> ⚠️ *Important:* Please keep this PIN secret. Use it to log in to your web panel and manage your bot settings, auto-saved contacts, and anti-delete logs.`,
                 askProcessingMsg: currentSettings.ASK_PROCESSING_MSG || '🦋 ඔයාව දැනගන්න ලැබුණු එකට සතුටුයි... 🤍',
                 enableDeletedAlert: currentSettings.ENABLE_DELETED_ALERT !== 'false',
                 alwaysOffline: currentSettings.ALLWAYS_OFFLINE === 'true',
@@ -7759,7 +7759,7 @@ router.get('/api/get-settings', async (req, res) => {
                     `📍 *ගම:* {city}\n` +
                     `🔢 *වයස:* {age}\n` +
                     `🧑‍🤝‍🧑 *ස්ත්‍රී/පුරුෂ භාවය:* {gender}\n\n` +
-                    `🤖 Powered by CHAMA-SHIELD`,
+                    `🤖 Powered by MADUSANKA-MD`,
                 contactNameFormat: currentSettings.CONTACT_NAME_FORMAT || '{name} 🤍 ({city}) - {age} - {gender}',
                 ownerName: currentSettings.OWNER_NAME || '',
                 ownerCity: currentSettings.OWNER_CITY || '',
