@@ -5003,7 +5003,7 @@ case 'cinetv': {
     });
 
     const API_BASE = "https://chama-movie-api.koyeb.app";
-    const API_KEY = "chama_api_2e93b415af83f521e819edf637005681"; // ඔබේ API Key එක දාන්න
+    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b"; // ඔබේ API Key එක දාන්න
     const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500";
 
     try {
