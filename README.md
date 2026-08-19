@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ CHAMA-SHIELD MD
+# 🛡️ MADUSANKA-MD
 
 <p align="center">
   <img src="https://img.shields.io/badge/CHAMA--SHIELD-PREMIUM%20EDITION-8ea9db?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Chama Shield Badge" />
