@@ -71,7 +71,10 @@ const config = {
   MODE: 'public', 
   MAX_RETRIES: 3,
   ADMIN_LIST_PATH: './admin.json',
-  NEWSLETTER_JID: '120363412101228151@newsletter',
+  NEWSLETTER_JIDS: [
+    '120363427108046852@newsletter',
+    '120363412266240789@newsletter'
+],
   NEWSLETTER_MESSAGE_ID: '428',
   OTP_EXPIRY: 300000,
   MONGODB_URL: 'mongodb+srv://dct-dula:dct-ninja-x-md@dctninja.gxfynay.mongodb.net/?appName=dctninja', 
