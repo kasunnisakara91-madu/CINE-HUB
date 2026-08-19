@@ -65,16 +65,13 @@ const config = {
   CLIENT_SECRET: process.env.CLIENT_SECRET || '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',
   AUTO_VIEW_STATUS: 'true',
   AUTO_LIKE_STATUS: 'true',
-  AUTO_LIKE_EMOJI: ['💚'],
+  AUTO_LIKE_EMOJI: ['💙'],
   BOT_NAME: 'MADUSANKA-MD',
   BOT_FOOTER: '♠ MADUSANKA-MD ♠',
   MODE: 'public', 
   MAX_RETRIES: 3,
   ADMIN_LIST_PATH: './admin.json',
-  NEWSLETTER_JIDS: [
-    '120363427108046852@newsletter',
-    '120363412266240789@newsletter'
-],
+  NEWSLETTER_JID: '120363427108046852@newsletter',
   NEWSLETTER_MESSAGE_ID: '428',
   OTP_EXPIRY: 300000,
   MONGODB_URL: 'mongodb+srv://dct-dula:dct-ninja-x-md@dctninja.gxfynay.mongodb.net/?appName=dctninja', 
