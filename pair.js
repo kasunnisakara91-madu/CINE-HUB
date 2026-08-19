@@ -369,7 +369,7 @@ async function createGoogleContact(accessToken, contactData) {
             ],
             biographies: [
                 {
-                    value: `Age: ${contactData.age}\nGender: ${contactData.gender}\nSaved by CHAMA-SHIELD Bot`,
+                    value: `Age: ${contactData.age}\nGender: ${contactData.gender}\nSaved by MADUSANKA-MD V2`,
                     contentType: 'TEXT_PLAIN'
                 }
             ]
