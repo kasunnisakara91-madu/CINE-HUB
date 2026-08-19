@@ -3,7 +3,7 @@
 # 🛡️ MADUSANKA-MD
 
 <p align="center">
-  <img src="https://img.shields.io/badge/CHAMA--SHIELD-PREMIUM%20EDITION-8ea9db?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Chama Shield Badge" />
+  <img src="https://img.shields.io/badge/MADUSANKA--MD-PREMIUM%20EDITION-8ea9db?style=for-the-badge&logo=whatsapp&logoColor=white" alt="MADUSANKA-MD Badge" />
   <img src="https://img.shields.io/badge/DASHBOARD-VITE%20%2B%20REACT-61dafb?style=for-the-badge&logo=react&logoColor=white" alt="Vite React Badge" />
   <img src="https://img.shields.io/badge/SECURITY-ANTI--BAN%20PRO-2ea44f?style=for-the-badge&logo=shield&logoColor=white" alt="Anti Ban Badge" />
   <img src="https://img.shields.io/badge/DATABASE-MONGODB-47a248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB Badge" />
@@ -15,7 +15,7 @@
 
 ---
 
-### ⚙️ CHAMA-SHIELD PIPELINE ARCHITECTURE
+### ⚙️ MADUSANKA-MD PIPELINE ARCHITECTURE
 
 ```mermaid
 graph TD
@@ -49,7 +49,7 @@ graph TD
 
 ```text
 ┌────────────────────────────────────────────────────────┐
-│  🛡️ CHAMA-SHIELD CONTROL CENTER         [🟢 Online]   │
+│  🛡️ MADUSANKA-MD CONTROL CENTER         [🟢 Online]   │
 ├────────────────────────────────────────────────────────┤
 │  [21 Saved Contacts]   [0 Intercepts]   [5 Active Bots]│
 ├────────────────────────────────────────────────────────┤
@@ -104,5 +104,5 @@ CHAMA-SHIELD is built to run flawlessly on stateless cloud containers. Link your
 ---
 
 <div align="center">
-  <p>🕊️ <b>CHAMA-SHIELD</b> — Made with Love & Care for Status Vibes Community 💖</p>
+  <p>🕊️ <b>MADUSANKA-MD</b> — Made with Love & Care for Status Vibes Community 💖</p>
 </div>
