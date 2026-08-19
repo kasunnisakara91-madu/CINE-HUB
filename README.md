@@ -57,7 +57,7 @@ graph TD
 │  ⚙️ Status Reaction Delays: 5s - 20s                    │
 │  🛡️ Anti-Spam Inbox Mute: [Enabled]                    │
 │  📈 Daily Auto-Like Reaction Cap: [250 Limit]          │
-│  👤 Owner Profile: Chamindu (Galle, 18, Boy)           │
+│  👤 Owner Profile: Damith (Galenbindunuwewa, 17, Boy)           │
 └────────────────────────────────────────────────────────┘
 ```
 
