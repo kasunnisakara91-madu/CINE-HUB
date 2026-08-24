@@ -44,7 +44,7 @@ import makeWASocket, {
     getBinaryNodeChild,
     getBinaryNodeChildren,
     BufferJSON
-} from '@whiskeysockets/baileys';
+} from '@whiskeysockets/baileys;
 
 const router = express.Router();
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
