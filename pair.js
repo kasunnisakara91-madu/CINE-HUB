@@ -1424,8 +1424,8 @@ END:VCARD`
 
             const prefixUsed = sessionConfig.PREFIX || config.PREFIX || '.';
             const userMention = `@${sender.split('@')[0]}`;
-            const botName = sessionConfig.BOT_NAME || config.BOT_NAME || '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD';
-            const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD';
+            const botName = sessionConfig.BOT_NAME || config.BOT_NAME || '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘';
+            const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘';
 
             let menuText = `*╭───❪ 🧚‍♂️ ${botName.toUpperCase()} MENU 🧚‍♂️ ❫───*\n` +
                 `*│* 👤 *User:* ${userMention}\n` +
