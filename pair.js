@@ -4461,7 +4461,7 @@ case 'ssub': {
     });
 
     const API_BASE = "https://chama-movie-api.koyeb.app";
-    const API_KEY = "chama_api_2e93b415af83f521e819edf637005681";
+    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
     const DEFAULT_IMAGE = "https://chama-movie-api.koyeb.app/logo.png";
 
     try {
