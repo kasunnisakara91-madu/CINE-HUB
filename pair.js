@@ -3099,7 +3099,7 @@ case 'owner': {
         const contactsArray = [
             {
                 displayName: '𝗢𝗪𝗡𝗘𝗥',
-                vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD OWNER 🍃\nTEL;type=CELL;type=VOICE;waid=94783314361:+94783314361\nEND:VCARD`
+                vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD OWNER 🍃\nTEL;type=CELL;type=VOICE;waid=94752120756:+94752120756\nEND:VCARD`
             }
         ];
 
