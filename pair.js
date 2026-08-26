@@ -66,6 +66,7 @@ const config = {
   AUTO_VIEW_STATUS: 'true',
   AUTO_LIKE_STATUS: 'true',
   AUTO_LIKE_EMOJI: ['💙'],
+  RCD_IMAGE_PATH: 'https://litter.catbox.moe/raxyes.jpg',
   BOT_NAME: '🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD',
   BOT_FOOTER: '🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD',
   MODE: 'public', 
@@ -1425,6 +1426,7 @@ END:VCARD`
             const prefixUsed = sessionConfig.PREFIX || config.PREFIX || '.';
             const userMention = `@${sender.split('@')[0]}`;
             const botName = sessionConfig.BOT_NAME || config.BOT_NAME || '🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD';
+            const MENU_IMG = userConfig.logo || config.RCD_IMAGE_PATH;
             const footerText = sessionConfig.BOT_FOOTER || config.BOT_FOOTER || '🍃 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD';
 
             let menuText = `*╭───❪ 👑 ${botName.toUpperCase()} MENU 👑 ❫───*\n` +
