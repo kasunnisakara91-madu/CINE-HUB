@@ -31,7 +31,7 @@ export default function Help() {
             {lang === 'si' ? 'පරිශීලක අත්පොත' : 'User Manual'}
           </span>
           <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-wider mt-1">
-            MADUSANKA-MD
+            💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘
           </h1>
         </div>
 
@@ -205,7 +205,7 @@ export default function Help() {
         )}
 
         <footer className="text-center mt-10 pt-6 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-400 dark:text-slate-500">
-          <p>🕊️ Powered by MADUSANKA-MD Control Engine</p>
+          <p>🕊️ Powered by 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 Control Engine</p>
         </footer>
       </div>
     </div>
