@@ -1666,6 +1666,7 @@ END:VCARD`
                 `*╭───〔 🎬 MOVIE & TV SERIES ENGINE 〕───*\n` +
                 `*│* 🎬 \`${prefixUsed}cmovie <targetJid> <movie>\` ➜ Multi-Site Channel Forwarder\n` +
                 `*│* 🎥 \`${prefixUsed}movie <movie_name>\` ➜ Multi-Site Chat Search\n` +
+				`*│* 🎞️ \`${prefixUsed}Cartoon <Cartoon_name>\` ➜ Cartoon Search\n` +
                 `*│* 📺 \`${prefixUsed}cinesubz <movie_name>\` ➜ CineSubz Search\n` +
                 `*│* 🎬 \`${prefixUsed}sinhalasub <movie_name>\` ➜ SinhalaSub Search\n` +
                 `*│* 🎥 \`${prefixUsed}baiscope <movie_name>\` ➜ Baiscope LK Search\n` +
