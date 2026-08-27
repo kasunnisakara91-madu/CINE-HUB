@@ -64,7 +64,7 @@ const SUCCESS_MSG_TEMPLATES = [
   {
     id: 5,
     title: "🧸 Default Chama Shield Style",
-    text: "🧸💫 **ඔබගේ තොරතුරු සාර්ථකව සුරැකුණා!** 🤍🌸\n\n📲 **කරුණාකර අපගේ දුරකථන අංකයද සුරැකීමට කාරුණික වන්න.** 😚💌\n\n━━━━━━━━━━━━━━━━━━\n🤖 *ʙᴏᴛ ᴏᴡɴᴇʀ ᴘʀᴏғɪʟᴇ:*\n👤 *නම:* {ownerName}\n📍 *ගම:* {ownerCity}\n🔢 *වයස:* {ownerAge}\n🧑‍🤝‍🧑 *භාවය:* {ownerGender}\n\n🔗 *WhatsApp Link:* https://wa.me/{botNumber}\n━━━━━━━━━━━━━━━━━━\n🛡️ Powered by MADUSANKA-MD"
+    text: "🧸💫 **ඔබගේ තොරතුරු සාර්ථකව සුරැකුණා!** 🤍🌸\n\n📲 **කරුණාකර අපගේ දුරකථන අංකයද සුරැකීමට කාරුණික වන්න.** 😚💌\n\n━━━━━━━━━━━━━━━━━━\n🤖 *ʙᴏᴛ ᴏᴡɴᴇʀ ᴘʀᴏғɪʟᴇ:*\n👤 *නම:* {ownerName}\n📍 *ගම:* {ownerCity}\n🔢 *වයස:* {ownerAge}\n🧑‍🤝‍🧑 *භාවය:* {ownerGender}\n\n🔗 *WhatsApp Link:* https://wa.me/{botNumber}\n━━━━━━━━━━━━━━━━━━\n🛡️ Powered by 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘"
   }
 ];
 
