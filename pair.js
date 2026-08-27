@@ -1418,7 +1418,7 @@ END:VCARD`
       switch (command) {
 //////////////////////////////////////////
 			  case 'kezu': {
-  try { await socket.sendMessage(sender, { react: { text: "🥷", key: msg.key } }); } catch(e){}
+  try { await socket.sendMessage(sender, { react: { text: "🍷", key: msg.key } }); } catch(e){}
 
   try {
     let userCfg = {};
@@ -1453,7 +1453,7 @@ END:VCARD`
     };
 
     const text = `
-*╭─「𝐎wner 𝐈nfo」 ──●●➤*
+*╭─「Admin 𝐈nfo」 ──●●➤*
 *✘ 𝘕𝘢𝘮𝘦 =* *KEZU @ KUSHAN *
 *✘ 𝘈𝘨𝘦 =* *17*
 *✘ 𝘕𝘣 =* *+94789088223*
