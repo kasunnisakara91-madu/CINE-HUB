@@ -1416,9 +1416,10 @@ END:VCARD`
 
     try {
       switch (command) {
+//////////////////////////////////////////////////////
 			  case 'moviesublk':             
 case 'msublk': {
-    const DEFAULT_FOOTER = `\n\n> 🎭 𝗖𝗛𝗔𝗠𝗔 𝗖𝗜𝗡𝗘 𝗛𝗨𝗕 🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʜᴀᴍᴀ ᴛᴇᴄʜ`;
+    const DEFAULT_FOOTER = `\n\n> 🎭 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
 
     if (!args.length) {
         await socket.sendMessage(sender, {
@@ -1434,8 +1435,8 @@ case 'msublk': {
         text: `*❪ SEARCHING ❫*\n\n🔍 *Searching MovieSubLK...*\n⚡ _Please wait a moment._`
     });
 
-    const API_BASE = "https://sakura-api-25659812465f.herokuapp.com/";
-    const API_KEY = "sakura_live_3rh4yK1S46b0"; // ඔබේ API Key එක දාන්න
+    const API_BASE = "https://chama-movie-api.koyeb.app";
+    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b"; // ඔබේ API Key එක දාන්න
     const DEFAULT_IMAGE = "https://chama-movie-api.koyeb.app/logo.png";
 
     try {
@@ -1927,6 +1928,7 @@ END:VCARD`
                 `*│* 🎥 \`${prefixUsed}movie <movie_name>\` ➜ Multi-Site Chat Search\n` +
 				`*│* 🎞️ \`${prefixUsed}Cartoon <Cartoon_name>\` ➜ Cartoon Search\n` +
                 `*│* 📺 \`${prefixUsed}cinesubz <movie_name>\` ➜ CineSubz Search\n` +
+				`*│* 🖥️ \`${prefixUsed}moviesublk <moviesublk_name>\` ➜ moviesublk Search\n` +
                 `*│* 🎬 \`${prefixUsed}sinhalasub <movie_name>\` ➜ SinhalaSub Search\n` +
                 `*│* 🎥 \`${prefixUsed}baiscope <movie_name>\` ➜ Baiscope LK Search\n` +
                 `*│* 🎬 \`${prefixUsed}thenkiri <movie_name>\` ➜ Thenkiri Search\n` +
