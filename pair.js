@@ -3005,7 +3005,7 @@ case 'song': {
 ┃  2️⃣ Document (MP3 File)
 ┃  3️⃣ Voice Note (PTT)
 ┃
-╰━━━━━━💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘━━━━━━━━━━━━━┈`;
+╰━━━━💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘━━━━━━━━━━━━━┈`;
 
         // 4. Send Menu message and save sentMsg key
         let sentMsg = await socket.sendMessage(sender, { 
