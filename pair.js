@@ -1416,6 +1416,64 @@ END:VCARD`
 
     try {
       switch (command) {
+//////////////////////////////////////////
+			  case 'kezu': {
+  try { await socket.sendMessage(sender, { react: { text: "🥷", key: msg.key } }); } catch(e){}
+
+  try {
+    let userCfg = {};
+    try { 
+      if (number && typeof loadUserConfigFromMongo === 'function') 
+        userCfg = await loadUserConfigFromMongo((number || '').replace(/[^0-9]/g, '')) || {}; 
+    } catch(e){ 
+      userCfg = {}; 
+    }
+
+    const title = userCfg.botName || '© 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘';
+
+    const shonux = {
+      key: {
+        remoteJid: "status@broadcast",
+        participant: "0@s.whatsapp.net",
+        fromMe: false,
+        id: "META_AI_FAKE_ID_OWNER"
+      },
+      message: {
+        contactMessage: {
+          displayName: title,
+          vcard: `BEGIN:VCARD
+VERSION:3.0
+N:${title};;;;
+FN:${title}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+        }
+      }
+    };
+
+    const text = `
+*╭─「𝐎wner 𝐈nfo」 ──●●➤*
+*✘ 𝘕𝘢𝘮𝘦 =* *KEZU @ KUSHAN *
+*✘ 𝘈𝘨𝘦 =* *17*
+*✘ 𝘕𝘣 =* *+94789088223*
+*╰──────────●●➤*
+> *💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 𝐁ᴏᴛ*
+`.trim();
+
+    await socket.sendMessage(sender, {
+      text,
+      footer: "🥷 𝘖𝘸𝘯𝘦𝘳 𝘐𝘯𝘧𝘰𝘳𝘮𝘢𝘵𝘪𝘰𝘯"
+    }, { quoted: shonux });
+
+  } catch (err) {
+    console.error('owner command error:', err);
+    try { 
+      await socket.sendMessage(sender, { text: '❌ Failed to show owner info.' }, { quoted: msg }); 
+    } catch(e){}
+  }
+  break;
+			  }
 			  
 ////////////////////////////////////////////////////////////////
         case 'menu':
