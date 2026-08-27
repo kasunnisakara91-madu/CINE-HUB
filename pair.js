@@ -1435,8 +1435,8 @@ case 'cartoon': {
         text: `*❪ SEARCHING ❫*\n\n🔍 *Searching Sinhalacartoons...*\n⚡ _Please wait a moment._`
     });
 
-    const API_BASE = "https://chama-movie-api.koyeb.app";
-    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b"; // ඔබේ API Key එක දාන්න
+    const API_BASE = "https://sakura-api-25659812465f.herokuapp.com/";
+    const API_KEY = "sakura_live_3rh4yK1S46b0"; // ඔබේ API Key එක දාන්න
     const DEFAULT_IMAGE = "https://chama-movie-api.koyeb.app/logo.png";
 
     try {
