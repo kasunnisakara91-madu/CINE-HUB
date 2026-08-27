@@ -2937,7 +2937,7 @@ case 'csong': {
             ff.audioCodec('libopus').format('opus').on('end', resolve).on('error', reject).save(chm_Opus);
         });
 
-        const sCaption = `☘️ *TITLE :* ${sTitle}\n` +
+        const sCaption = `🧚‍♂️ *TITLE :* ${sTitle}\n` +
                          `◽️ ⏱ *Duration :* ${sMetadata?.timestamp || 'N/A'}\n\n` +
                          `> *© 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘-MD *`;
 
@@ -3005,7 +3005,7 @@ case 'song': {
 ┃  2️⃣ Document (MP3 File)
 ┃  3️⃣ Voice Note (PTT)
 ┃
-╰━━━━━━━━━━━━━━━━━━━┈`;
+╰━━━━━━💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘━━━━━━━━━━━━━┈`;
 
         // 4. Send Menu message and save sentMsg key
         let sentMsg = await socket.sendMessage(sender, { 
