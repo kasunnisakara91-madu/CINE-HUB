@@ -1417,323 +1417,125 @@ END:VCARD`
     try {
       switch (command) {
 	//////////////////////////////////////////
-			  case 'bsong': {
+			  case 'asong': {
 
-    const q = args.join(' ');
+const q = args.join(' ');
+if (!q) return reply("🎵 Song name එකක් දෙන්න\n\nExample: .song lelena");
 
-    if (!q) return reply("කරුණාකර සිංදුවක නමක් දෙන්න.\n\nඋදා: .song lelena");
 
+try {
 
-    try {
+await reply("⏳ Searching song...");
 
-        await reply("⏳ *Searching your song...*");
 
+let video;
+let ytUrl = q;
 
-        let ytUrl = q;
-        let video = null;
 
+if (!/^https?:\/\//i.test(q)) {
 
-        if (!/^https?:\/\//i.test(q)) {
+const search = await yts(q);
 
-            const searchRes = await yts(q);
+video = search.videos[0];
 
-            video = searchRes.videos[0];
+if (!video) return reply("❌ Song not found");
 
-            if (!video) {
-                return reply("❌ ගීතය සොයාගත නොහැක!");
-            }
+ytUrl = video.url;
 
-            ytUrl = video.url;
+}
 
-        } else {
 
-            const searchRes = await yts(q);
+const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
-            video = searchRes.videos ? searchRes.videos[0] : null;
 
-        }
+const api = 
+`https://chama-movie-api.koyeb.app/api/v1/youtube/mp3?url=${encodeURIComponent(ytUrl)}&quality=320kbps&source=auto&api_key=${API_KEY}`;
 
 
+const {data} = await axios.get(api);
 
-        const API_KEY_YTMP3 =
-        "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
 
-        const apiUrl =
-        `https://chama-movie-api.koyeb.app/api/v1/youtube/mp3?url=${encodeURIComponent(ytUrl)}&quality=320kbps&source=auto&api_key=${API_KEY_YTMP3}`;
+if(!data || !data.status)
+return reply("❌ API error");
 
 
-        const { data } = await axios.get(apiUrl);
 
+const song = data.data || {};
 
+const title = song.title || video?.title || "Unknown";
 
-        if (!data || !data.status) {
+const thumb = song.thumbnail || video?.thumbnail;
 
-            return reply("❌ API Error: Song download failed");
+const download =
+song.direct_url ||
+data.download?.url;
 
-        }
 
 
+if(!download)
+return reply("❌ Download link not found");
 
-        const songInfo = data.data || {};
 
 
-        const title =
-        songInfo.title ||
-        video?.title ||
-        "Song";
+// SONG DETAILS
 
+await socket.sendMessage(sender,{
 
-        const thumbnail =
-        songInfo.thumbnail ||
-        video?.thumbnail ||
-        video?.image;
+image:{
+url:thumb
+},
 
+caption:`
+╭━━━〔 🎵 SONG DOWNLOADER 〕━━━
 
+🎧 *Title:* ${title}
 
-        const dlUrl =
-        songInfo.direct_url ||
-        data.download?.url;
+⏱️ *Duration:* ${video?.timestamp || "N/A"}
 
+⚡ *Quality:* 320kbps
 
+╰━━━━━━━━━━💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘━━━━━━━━
+`
 
-        if (!dlUrl) {
 
-            return reply("❌ Download link not found");
+},{
+quoted:msg
+});
 
-        }
 
 
+// AUTO SEND AUDIO
 
-        let menuText = `
-╭━━━〔 🎵 SONG DOWNLOADER 〕━━━┈
+await socket.sendMessage(sender,{
 
-┃ 🎧 Title : ${title}
-┃ ⏱ Duration : ${video?.timestamp || "N/A"}
+audio:{
+url:download
+},
 
-┃ Select Download Type 👇
+mimetype:"audio/mpeg",
 
-╰━━━━━━━━━━━━━━━━━━┈
-`;
+fileName:`${title}.mp3`
 
+},{
 
+quoted:msg
 
-        // BUTTON MESSAGE
+});
 
-        let sentMsg = await socket.sendMessage(sender, {
 
-            image: {
-                url: thumbnail
-            },
+} catch(e){
 
-            caption: menuText,
+console.log(e);
 
-            footer: "💚 BESTIE_MINI",
+reply("❌ Error : "+e.message);
 
-            buttons: [
-
-                {
-                    buttonId: "1",
-                    buttonText: {
-                        displayText: "🎵 Audio MP3"
-                    },
-                    type: 1
-                },
-
-                {
-                    buttonId: "2",
-                    buttonText: {
-                        displayText: "📁 Document MP3"
-                    },
-                    type: 1
-                },
-
-                {
-                    buttonId: "3",
-                    buttonText: {
-                        displayText: "🎤 Voice Note"
-                    },
-                    type: 1
-                }
-
-            ],
-
-            headerType: 4
-
-        }, {
-            quoted: msg
-        });
-
-
-
-
-
-        // BUTTON LISTENER
-
-        const listener = async (msgUpdate) => {
-
-            try {
-
-
-                const m = msgUpdate.messages[0];
-
-
-                if (!m || !m.message) return;
-
-
-
-                const msgText =
-
-                m.message.buttonsResponseMessage?.selectedButtonId ||
-
-                m.message.conversation ||
-
-                m.message.extendedTextMessage?.text ||
-
-                "";
-
-
-
-                const isReplyToBot =
-
-                m.message.extendedTextMessage?.contextInfo?.stanzaId === sentMsg.key.id;
-
-
-
-                if (isReplyToBot && ['1','2','3'].includes(msgText)) {
-
-
-
-                    await socket.sendMessage(sender, {
-
-                        text: "⏳ *Downloading...*"
-
-                    }, {
-                        quoted: m
-                    });
-
-
-
-
-                    if (msgText === "1") {
-
-
-                        await socket.sendMessage(sender, {
-
-                            audio: {
-                                url: dlUrl
-                            },
-
-                            mimetype: "audio/mpeg"
-
-
-                        }, {
-                            quoted: m
-                        });
-
-
-                    }
-
-
-
-
-                    else if (msgText === "2") {
-
-
-                        await socket.sendMessage(sender, {
-
-                            document: {
-                                url: dlUrl
-                            },
-
-                            mimetype: "audio/mpeg",
-
-                            fileName: `${title}.mp3`
-
-
-                        }, {
-                            quoted: m
-                        });
-
-
-                    }
-
-
-
-
-                    else if (msgText === "3") {
-
-
-                        await socket.sendMessage(sender, {
-
-                            audio: {
-                                url: dlUrl
-                            },
-
-                            mimetype: "audio/mp4",
-
-                            ptt: true
-
-
-                        }, {
-                            quoted: m
-                        });
-
-
-                    }
-
-
-
-
-                    socket.ev.off(
-                        'messages.upsert',
-                        listener
-                    );
-
-
-                }
-
-
-
-            } catch (err) {
-
-                console.log(err);
-
-            }
-
-        };
-
-
-
-        socket.ev.on(
-            'messages.upsert',
-            listener
-        );
-
-
-
-        setTimeout(() => {
-
-            socket.ev.off(
-                'messages.upsert',
-                listener
-            );
-
-        }, 60000);
-
-
-
-
-    } catch (e) {
-
-        console.log(e);
-
-        reply("❌ Error: " + e.message);
-
-    }
+}
 
 
 break;
+
+}
 			  
 
 												 }
