@@ -1428,8 +1428,8 @@ const seconds = Math.floor(uptime % 60);
 
 
 const botInfo = `
-╭─── 〘-𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ-〙 ───
-│   🌐 Version: 𝐯2
+╭─── 〘-💚𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ😘-〙 ───
+│   🌐 Version: 𝐯1
 │
 ╭─── 〘 📊 SESSION INFO 〙 ───
 │
@@ -1439,7 +1439,7 @@ const botInfo = `
 │
 ╭─── 〘 🌐 𝐖𝐄𝐁 〙 ──────────
 │
-> ❗𝐂𝐎𝐌𝐌𝐈𝐍𝐆 𝐒𝐎𝐎𝐍
+>  `https://madusanka-md-v2-main-saite-production.up.railway.app`
 │
 ╰───────────────────────
 
