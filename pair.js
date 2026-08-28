@@ -2164,7 +2164,7 @@ END:VCARD`
     };
 
     const text = `
-*╭─「Admin 𝐈nfo」 ──●●➤*
+*╭─「𝐌𝐘 𝐈nfo」 ──●●➤*
 *✘ 𝘕𝘢𝘮𝘦 =* *MADUSANKA *
 *✘ 𝘈𝘨𝘦 =* *17*
 *✘ 𝘕𝘣 =* *+94783731694*
@@ -2238,6 +2238,7 @@ END:VCARD`
                 `*│* 🖼️ \`${prefixUsed}tourl\` | \`${prefixUsed}imgbb\` | \`${prefixUsed}catbox\` ➜ Upload Media to Web URL\n` +
                 `*│* 🆔 \`${prefixUsed}jid\` ➜ Get Chat / Group / Channel JID\n` +
                 `*│* 🏓 \`${prefixUsed}ping\` ➜ Check Bot Latency Speed\n` +
+				`*│* 🧸 \`${prefixUsed}alive\` ➜ alive - Bot status` +
                 `*│* 👑 \`${prefixUsed}owner\` ➜ View Bot Owner Contact Card\n` +
                 `*╰─────────────────────────────*\n\n` +
 
