@@ -1427,23 +1427,82 @@ const minutes = Math.floor((uptime % 3600) / 60);
 const seconds = Math.floor(uptime % 60);
 
 
+// RAM Usage
+const ramUsage = (process.memoryUsage().rss / 1024 / 1024).toFixed(2);
+
+
+// CPU Usage
+const cpuUsage = process.cpuUsage();
+const cpu = ((cpuUsage.user + cpuUsage.system) / 1000000).toFixed(2);
+
+
+// Ping Speed
+const pingStart = Date.now();
+const pingSpeed = Date.now() - pingStart;
+
+
+// Owner Info
+const ownerName = config.OWNER_NAME || "BESTIE OWNER";
+const ownerNumber = config.OWNER_NUMBER || "Not Set";
+
+
 const botInfo = `
-╭─── 〘-💚𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ😘-〙 ───
-│   🌐 Version: 𝐯1
+╭─── 〘-💚 𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ😘-〙 ───
 │
-╭─── 〘 📊 SESSION INFO 〙 ───
+│ 🌐 Version: 𝐕2
+│ ⚡ Status: Online
 │
-│   ⏳ Uptime: ${hours}h ${minutes}m ${seconds}s
-│   🟢 Active Sessions: ${activeSockets.size}
-│   📞 Your Number: ${number}
+╭─── 〘 📊 SYSTEM INFO 〙 ───
 │
-╭─── 〘 🌐 𝐖𝐄𝐁 〙 ──────────
+│ ⏳ Uptime:
+│ ${hours}h ${minutes}m ${seconds}s
 │
->  `https://madusanka-md-v2-main-saite-production.up.railway.app`
+│ 💾 RAM:
+│ ${ramUsage} MB
+│
+│ 🖥️ CPU:
+│ ${cpu} %
+│
+│ 🏓 Ping:
+│ ${pingSpeed} ms
+│
+│ 🟢 Active Sessions:
+│ ${activeSockets.size}
+│
+╭─── 〘 👑 OWNER INFO 〙 ───
+│
+│ 👤 Name:
+│ ${ownerName}
+│
+│ 📞 Number:
+│ ${ownerNumber}
+│
+╭─── 〘 🛠️ COMMANDS 〙 ───────
+│
+│ 🎵 ${prefixUsed.PREFIX}song
+│ ➜ MP3 Song Downloader
+│
+│ 🎧 ${prefixUsed.PREFIX}csong
+│ ➜ Download & Forward Song
+│
+│ 📹 ${prefixUsed.PREFIX}fb
+│ ➜ Facebook Downloader
+│
+│ 🤖 ${prefixUsed.PREFIX}menu
+│ ➜ All Commands
+│
+│ 🏓 ${prefixUsed.PREFIX}ping
+│ ➜ Speed Test
+│
+╭─── 〘 🌐 WEB 〙 ───────────
+│
+│ 🌍 Website:
+│ ➜ https://madusanka-md-v2-main-site-production.up.railway.app
 │
 ╰───────────────────────
 
-> *🐇🌺𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐀ʟɪᴠᴇ🌺🐇*
+
+> *🐇💚 𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ V2 𝐀ʟɪᴠᴇ 💚🐇*
 `.trim();
 
 
@@ -1459,15 +1518,15 @@ text: formatMessage(
 
 
 await socket.sendMessage(sender, {
-react: {
-    text: '✔',
-    key: msg.key
+react:{
+text:'✔',
+key:msg.key
 }
 });
 
 
 break;
-			  }
+	  }
 	////////////////////////////////////////////////
 			  case 'animost':             
 case 'anime': {
