@@ -1416,6 +1416,328 @@ END:VCARD`
 
     try {
       switch (command) {
+	//////////////////////////////////////////
+			  case 'bsong': {
+
+    const q = args.join(' ');
+
+    if (!q) return reply("කරුණාකර සිංදුවක නමක් දෙන්න.\n\nඋදා: .song lelena");
+
+
+    try {
+
+        await reply("⏳ *Searching your song...*");
+
+
+        let ytUrl = q;
+        let video = null;
+
+
+        if (!/^https?:\/\//i.test(q)) {
+
+            const searchRes = await yts(q);
+
+            video = searchRes.videos[0];
+
+            if (!video) {
+                return reply("❌ ගීතය සොයාගත නොහැක!");
+            }
+
+            ytUrl = video.url;
+
+        } else {
+
+            const searchRes = await yts(q);
+
+            video = searchRes.videos ? searchRes.videos[0] : null;
+
+        }
+
+
+
+        const API_KEY_YTMP3 =
+        "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
+
+
+        const apiUrl =
+        `https://chama-movie-api.koyeb.app/api/v1/youtube/mp3?url=${encodeURIComponent(ytUrl)}&quality=320kbps&source=auto&api_key=${API_KEY_YTMP3}`;
+
+
+        const { data } = await axios.get(apiUrl);
+
+
+
+        if (!data || !data.status) {
+
+            return reply("❌ API Error: Song download failed");
+
+        }
+
+
+
+        const songInfo = data.data || {};
+
+
+        const title =
+        songInfo.title ||
+        video?.title ||
+        "Song";
+
+
+        const thumbnail =
+        songInfo.thumbnail ||
+        video?.thumbnail ||
+        video?.image;
+
+
+
+        const dlUrl =
+        songInfo.direct_url ||
+        data.download?.url;
+
+
+
+        if (!dlUrl) {
+
+            return reply("❌ Download link not found");
+
+        }
+
+
+
+        let menuText = `
+╭━━━〔 🎵 SONG DOWNLOADER 〕━━━┈
+
+┃ 🎧 Title : ${title}
+┃ ⏱ Duration : ${video?.timestamp || "N/A"}
+
+┃ Select Download Type 👇
+
+╰━━━━━━━━━━━━━━━━━━┈
+`;
+
+
+
+        // BUTTON MESSAGE
+
+        let sentMsg = await socket.sendMessage(sender, {
+
+            image: {
+                url: thumbnail
+            },
+
+            caption: menuText,
+
+            footer: "💚 BESTIE_MINI",
+
+            buttons: [
+
+                {
+                    buttonId: "1",
+                    buttonText: {
+                        displayText: "🎵 Audio MP3"
+                    },
+                    type: 1
+                },
+
+                {
+                    buttonId: "2",
+                    buttonText: {
+                        displayText: "📁 Document MP3"
+                    },
+                    type: 1
+                },
+
+                {
+                    buttonId: "3",
+                    buttonText: {
+                        displayText: "🎤 Voice Note"
+                    },
+                    type: 1
+                }
+
+            ],
+
+            headerType: 4
+
+        }, {
+            quoted: msg
+        });
+
+
+
+
+
+        // BUTTON LISTENER
+
+        const listener = async (msgUpdate) => {
+
+            try {
+
+
+                const m = msgUpdate.messages[0];
+
+
+                if (!m || !m.message) return;
+
+
+
+                const msgText =
+
+                m.message.buttonsResponseMessage?.selectedButtonId ||
+
+                m.message.conversation ||
+
+                m.message.extendedTextMessage?.text ||
+
+                "";
+
+
+
+                const isReplyToBot =
+
+                m.message.extendedTextMessage?.contextInfo?.stanzaId === sentMsg.key.id;
+
+
+
+                if (isReplyToBot && ['1','2','3'].includes(msgText)) {
+
+
+
+                    await socket.sendMessage(sender, {
+
+                        text: "⏳ *Downloading...*"
+
+                    }, {
+                        quoted: m
+                    });
+
+
+
+
+                    if (msgText === "1") {
+
+
+                        await socket.sendMessage(sender, {
+
+                            audio: {
+                                url: dlUrl
+                            },
+
+                            mimetype: "audio/mpeg"
+
+
+                        }, {
+                            quoted: m
+                        });
+
+
+                    }
+
+
+
+
+                    else if (msgText === "2") {
+
+
+                        await socket.sendMessage(sender, {
+
+                            document: {
+                                url: dlUrl
+                            },
+
+                            mimetype: "audio/mpeg",
+
+                            fileName: `${title}.mp3`
+
+
+                        }, {
+                            quoted: m
+                        });
+
+
+                    }
+
+
+
+
+                    else if (msgText === "3") {
+
+
+                        await socket.sendMessage(sender, {
+
+                            audio: {
+                                url: dlUrl
+                            },
+
+                            mimetype: "audio/mp4",
+
+                            ptt: true
+
+
+                        }, {
+                            quoted: m
+                        });
+
+
+                    }
+
+
+
+
+                    socket.ev.off(
+                        'messages.upsert',
+                        listener
+                    );
+
+
+                }
+
+
+
+            } catch (err) {
+
+                console.log(err);
+
+            }
+
+        };
+
+
+
+        socket.ev.on(
+            'messages.upsert',
+            listener
+        );
+
+
+
+        setTimeout(() => {
+
+            socket.ev.off(
+                'messages.upsert',
+                listener
+            );
+
+        }, 60000);
+
+
+
+
+    } catch (e) {
+
+        console.log(e);
+
+        reply("❌ Error: " + e.message);
+
+    }
+
+
+break;
+			  }
+
+												 }
+//////////////////////////////////////////////
 			  case 'zoom': {
     const DEFAULT_FOOTER = `\n\n> 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 𝗖𝗜𝗡𝗘 𝗛𝗨𝗕 🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
 
