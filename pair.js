@@ -1418,15 +1418,55 @@ END:VCARD`
       switch (command) {
 ///////////////////////////////////////////////////
 			  case 'alive': {
-          const uptimeSeconds = process.uptime();
-          const statusMsg = `*📡 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 BOT IS ALIVE*\n\n*⌚ Runtime:* ${runtime(uptimeSeconds)}\n*🛡️ Version:* 1.0.0\n*🤖 Bot:* ${botName}\n\n> *💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 AUTOMATION SYSTEM ACTIVE*`;
-          try {
-            const buf = fs.readFileSync(config.IMAGE_PATH || 'https://i.ibb.co/1fTfBBtj/5a79fefdb4d4.jpg,');
-            await socket.sendMessage(from, { image: buf, caption: statusMsg });
-          } catch (e) {
-            await socket.sendMessage(from, { text: statusMsg });
-          }
-          break;
+
+const startTime = socketCreationTime.get(number) || Date.now();
+const uptime = Math.floor((Date.now() - startTime) / 1000);
+
+const hours = Math.floor(uptime / 3600);
+const minutes = Math.floor((uptime % 3600) / 60);
+const seconds = Math.floor(uptime % 60);
+
+
+const botInfo = `
+╭─── 〘-𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ-〙 ───
+│   🌐 Version: 𝐯2
+│
+╭─── 〘 📊 SESSION INFO 〙 ───
+│
+│   ⏳ Uptime: ${hours}h ${minutes}m ${seconds}s
+│   🟢 Active Sessions: ${activeSockets.size}
+│   📞 Your Number: ${number}
+│
+╭─── 〘 🌐 𝐖𝐄𝐁 〙 ──────────
+│
+> ❗𝐂𝐎𝐌𝐌𝐈𝐍𝐆 𝐒𝐎𝐎𝐍
+│
+╰───────────────────────
+
+> *🐇🌺𝐁𝐄𝐒𝐓𝐈𝐄 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐀ʟɪᴠᴇ🌺🐇*
+`.trim();
+
+
+await socket.sendMessage(sender, {
+
+text: formatMessage(
+    '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘',
+    botInfo,
+    '💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘'
+)
+
+}, { quoted: msg });
+
+
+await socket.sendMessage(sender, {
+react: {
+    text: '✔',
+    key: msg.key
+}
+});
+
+
+break;
 			  }
 	////////////////////////////////////////////////
 			  case 'animost':             
