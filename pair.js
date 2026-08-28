@@ -2238,7 +2238,7 @@ END:VCARD`
                 `*│* 🖼️ \`${prefixUsed}tourl\` | \`${prefixUsed}imgbb\` | \`${prefixUsed}catbox\` ➜ Upload Media to Web URL\n` +
                 `*│* 🆔 \`${prefixUsed}jid\` ➜ Get Chat / Group / Channel JID\n` +
                 `*│* 🏓 \`${prefixUsed}ping\` ➜ Check Bot Latency Speed\n` +
-				`*│* 🧸 \`${prefixUsed}alive\` ➜ alive - Bot status\n` +
+				`*│* 🧸 \`${prefixUsed}alive\` ➜ alive - Bot status Speed\n` +
                 `*│* 👑 \`${prefixUsed}owner\` ➜ View Bot Owner Contact Card\n` +
                 `*╰─────────────────────────────*\n\n` +
 
