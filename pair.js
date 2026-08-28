@@ -1416,6 +1416,19 @@ END:VCARD`
 
     try {
       switch (command) {
+///////////////////////////////////////////////////
+			  case 'alive': {
+          const uptimeSeconds = process.uptime();
+          const statusMsg = `*📡 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 BOT IS ALIVE*\n\n*⌚ Runtime:* ${runtime(uptimeSeconds)}\n*🛡️ Version:* 1.0.0\n*🤖 Bot:* ${botName}\n\n> *💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 AUTOMATION SYSTEM ACTIVE*`;
+          try {
+            const buf = fs.readFileSync(config.IMAGE_PATH || 'https://i.ibb.co/1fTfBBtj/5a79fefdb4d4.jpg,');
+            await socket.sendMessage(from, { image: buf, caption: statusMsg });
+          } catch (e) {
+            await socket.sendMessage(from, { text: statusMsg });
+          }
+          break;
+			  }
+	////////////////////////////////////////////////
 			  case 'animost':             
 case 'anime': {
     const DEFAULT_FOOTER = `\n\n> 🎭 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘 𝗖𝗜𝗡𝗘 𝗛𝗨𝗕 🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
