@@ -1420,61 +1420,62 @@ END:VCARD`
 			  case 'yts': {
 try {
 
-if(!q) return reply(`❌ Song / Video name එක දෙන්න
+if(!q) return reply(`❌ Video name එක දෙන්න
 
 Example:
 .yts alan walker
 
 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
+
 const axios = require("axios");
 
 const apiKey = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
-let url = `https://chama-movie-api.koyeb.app/api/v1/youtube/search?q=${encodeURIComponent(q)}&apiKey=${apiKey}`;
+let api = `https://chama-movie-api.koyeb.app/api/v1/youtube/search?q=${encodeURIComponent(q)}&apiKey=${apiKey}`;
 
 
-let res = await axios.get(url,{
-timeout:10000
+let {data} = await axios.get(api,{
+timeout:15000,
+headers:{
+"User-Agent":"Mozilla/5.0"
+}
 });
 
-let data = res.data.data || res.data.results || res.data;
+
+let result = data.data || data.result || data.results || data;
 
 
-if(!data || !data[0])
-return reply("❌ Result නැහැ");
+if(!result || result.length === 0)
+return reply(`❌ Result නැහැ
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
 
-let video = data[0];
-
-let title = video.title || video.name || q;
-let thumb = video.thumbnail || video.image;
-let link = video.url || video.link;
+let video = result[0];
 
 
-let msg = `
-╭━━━〔 🎬 YOUTUBE 〕━━━╮
+let title = video.title || video.name || video.videoTitle || q;
+let thumb = video.thumbnail || video.image || video.thumb;
+
+
+await conn.sendMessage(from,{
+image: thumb ? {url:thumb} : undefined,
+caption:`
+╭━━━〔 🎬 YOUTUBE SEARCH 〕━━━╮
 
 💚 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 😘
 
 🎵 Title:
 ${title}
 
-🔗 Link:
-${link || "Not Found"}
-
-⚡ Speed:
-Instant Search ✅
+✅ Status : Found
+⚡ Speed : Fast
 
 ╰━━━━━━━━━━━━━━╯
 
-✨ Premium MD Bot
-`;
-
-
-await conn.sendMessage(from,{
-image: thumb ? {url:thumb} : undefined,
-caption: msg
+✨ Powered By BESTIE MINI
+`
 },{
 quoted:mek
 });
@@ -1482,8 +1483,11 @@ quoted:mek
 
 } catch(e){
 
-console.log(e.response?.data || e);
+console.log("YTS ERROR:", e.response?.data || e.message);
+
 reply(`❌ YTS Error
+
+API response error
 
 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
