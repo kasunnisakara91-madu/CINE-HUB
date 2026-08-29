@@ -1417,7 +1417,74 @@ END:VCARD`
     try {
       switch (command) {
 //////////////////////////////////////////////////////////
-			  
+			  case 'kick': {
+try {
+
+if(!isGroup)
+return reply("❌ Group එකක විතරයි use කරන්න");
+
+if(!isAdmins && !isOwner)
+return reply("❌ Admin හෝ Owner විතරයි use කරන්න පුළුවන්");
+
+if(!isBotAdmins)
+return reply("❌ Bot admin වෙලා නැහැ");
+
+
+let user;
+
+if(mentionedJid && mentionedJid.length > 0) {
+    user = mentionedJid[0];
+} 
+else if(quoted) {
+    user = quoted.sender;
+} 
+else {
+    return reply(`❌ Member mention කරන්න\n\nExample:\n.kick @user`);
+}
+
+
+// Owner protect
+if(user === ownerNumber + "@s.whatsapp.net")
+return reply("❌ Ownerව kick කරන්න බැහැ");
+
+
+// Admin protect
+let targetAdmin = groupAdmins.includes(user);
+
+if(targetAdmin)
+return reply("❌ Admin කෙනෙක්ව kick කරන්න බැහැ");
+
+
+// Bot protect
+if(user === botNumber)
+return reply("❌ Botව kick කරන්න බැහැ");
+
+
+await conn.groupParticipantsUpdate(
+    from,
+    [user],
+    "remove"
+);
+
+
+reply(`╭━━━〔 👢 KICK 〕━━━╮
+
+✅ Member Removed
+
+👤 @${user.split("@")[0]}
+
+╰━━━━━━━━━━━━━━╯
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+
+} catch(e) {
+console.log(e);
+reply("❌ Kick error");
+}
+
+}
+break;
 			  
 	//////////////////////////////////////////
 			  case 'asong': {
