@@ -1417,7 +1417,30 @@ END:VCARD`
     try {
       switch (command) {
 //////////////////////////////////////////////////////////
-			  
+			  case 'ping': {
+try {
+
+let speed = Date.now();
+
+reply(`╭━━━〔 🟢 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 😘 〕━━━╮
+
+        ⚡ 𝐏𝐈𝐍𝐆 𝐓𝐄𝐒𝐓 ⚡
+
+╭━━━━━━━━━━━━━━╮
+┃ 🚀 Speed : ${Date.now() - speed} ms
+┃ 🟢 Status : Online
+┃ 🤖 Bot : Active
+╰━━━━━━━━━━━━━━╯
+
+        💚 𝐕𝐈𝐏 𝐌𝐃 𝐁𝐎𝐓 💚
+
+╰━━━━━━━━━━━━━━╯`);
+
+} catch(e) {
+reply("❌ Ping Error");
+}
+}
+break;
 			  
 	//////////////////////////////////////////
 			  case 'asong': {
@@ -7114,7 +7137,7 @@ case 'listreact': {
     }
     break;
 }
-case 'ping': {
+case 'ping1': {
     const startPing = process.hrtime();
     await socket.sendMessage(sender, { react: { text: '🧚‍♂️', key: msg.key } });
 
