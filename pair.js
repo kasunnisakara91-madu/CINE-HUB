@@ -1416,6 +1416,49 @@ END:VCARD`
 
     try {
       switch (command) {
+///////////////////////////////////////////////////
+			  case 'system': {
+try {
+
+const os = require("os");
+
+let total = (os.totalmem() / 1024 / 1024).toFixed(0);
+let free = (os.freemem() / 1024 / 1024).toFixed(0);
+let used = total - free;
+
+let uptime = process.uptime();
+
+let h = Math.floor(uptime / 3600);
+let m = Math.floor((uptime % 3600) / 60);
+let s = Math.floor(uptime % 60);
+
+reply(`╭━━━〔 💻 SYSTEM INFO 〕━━━╮
+
+💚 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 😘
+
+🖥️ Platform : ${os.platform()}
+⚙️ CPU : ${os.cpus()[0].model}
+
+🧠 RAM Used : ${used} MB
+💾 RAM Total : ${total} MB
+
+⏳ Runtime :
+${h}h ${m}m ${s}s
+
+🟢 Status : Online
+
+╰━━━━━━━━━━━━╯
+
+✨ Premium MD Bot`);
+
+} catch(e) {
+console.log(e);
+reply("❌ System Error");
+}
+
+}
+break;
+			  
 //////////////////////////////////////////////////////////
 			  case 'ping': {
 try {
