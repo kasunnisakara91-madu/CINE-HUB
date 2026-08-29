@@ -1417,7 +1417,89 @@ END:VCARD`
     try {
       switch (command) {
 //////////////////////////////////////////////////////////
-			  
+			  case 'video': {
+try {
+
+if(!q) return reply(`🎥 *VIDEO SEARCH*\n\nVideo name එකක් දෙන්න\n\nExample:\n.video avatar\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+const axios = require("axios");
+
+const apiKey = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
+
+let url = `https://chama-movie-api.koyeb.app/api/v1/movies/cinesubz/search?q=${encodeURIComponent(q)}&apiKey=${apiKey}`;
+
+let res = await axios.get(url);
+
+let movies = res.data.data || res.data.results || res.data;
+
+if(!movies || !movies.length)
+return reply(`❌ Video හම්බුනේ නෑ\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+
+global.videoSearch = global.videoSearch || {};
+global.videoSearch[from] = movies.slice(0,10);
+
+
+let msg = `╭━━━〔 🎥 VIDEO SEARCH 〕━━━╮\n\n`;
+msg += `🔎 *Search:* ${q}\n\n`;
+
+movies.slice(0,10).forEach((m,i)=>{
+msg += `┃ ${i+1}. ${m.title || m.name || "Unknown"}\n`;
+});
+
+msg += `\n╰━━━━━━━━━━━━━━━━╯\n`;
+msg += `💚 Number එක Reply කරන්න\n`;
+msg += `Example: 1\n\n`;
+msg += `💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
+
+
+await conn.sendMessage(from,{
+text:msg
+},{
+quoted:mek
+});
+
+
+} catch(e) {
+console.log(e.response?.data || e);
+reply(`❌ Video Search Error\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+}
+
+}
+break;
+
+
+// NUMBER REPLY
+
+if(global.videoSearch && global.videoSearch[from] && !isCmd){
+
+let num = Number(body);
+
+if(!isNaN(num)){
+
+let movie = global.videoSearch[from][num-1];
+
+if(!movie) return reply("❌ Wrong number");
+
+
+let info = `🎥 *${movie.title || movie.name}*\n\n`;
+
+info += `📅 Year : ${movie.year || "N/A"}\n`;
+info += `🎬 Type : ${movie.type || "Movie"}\n`;
+
+if(movie.description)
+info += `\n📝 ${movie.description}`;
+
+
+info += `\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
+
+reply(info);
+
+delete global.videoSearch[from];
+
+}
+
+}
 			  
 	//////////////////////////////////////////
 			  case 'asong': {
