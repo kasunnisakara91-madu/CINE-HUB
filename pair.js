@@ -1417,44 +1417,7 @@ END:VCARD`
     try {
       switch (command) {
 //////////////////////////////////////////////////////////
-			  case 'video': {
-try {
-
-if(!q) return reply(`🎥 Video name එකක් දෙන්න\n\nExample: .video avatar`);
-
-const axios = require("axios");
-
-const apiKey = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
-
-let url = `https://chama-movie-api.koyeb.app/=${encodeURIComponent(q)}&apiKey=${apiKey}`;
-
-let res = await axios.get(url);
-
-console.log(res.data);
-
-let movies = res.data.data || res.data.results || res.data;
-
-if(!movies || !movies.length)
-return reply("❌ Result නැහැ");
-
-
-let msg = `🎬 *BESTIE VIDEO SEARCH* 💚\n\n`;
-
-movies.slice(0,10).forEach((m,i)=>{
-msg += `*${i+1}.* ${m.title || m.name}\n`;
-});
-
-msg += `\nReply number එකක් දෙන්න\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`;
-
-reply(msg);
-
-} catch(e){
-console.log(e.response?.data || e);
-reply(`❌ API Error\n\n💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
-}
-
-}
-break;
+			  🧚‍♂️
 			  
 	//////////////////////////////////////////
 			  case 'asong': {
