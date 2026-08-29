@@ -1417,7 +1417,32 @@ END:VCARD`
     try {
       switch (command) {
 ////////////////////////////////////////////
-			  
+			  case 'sticker':
+case 's': {
+    await socket.sendMessage(sender, { react: { text: '🪷', key: msg.key } });
+
+    try {
+        let quoted = msg.quoted ? msg.quoted : msg;
+        let mime = (quoted.msg || quoted).mimetype || '';
+
+        if (!mime) {
+            return socket.sendMessage(from, { text: '⚠️ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴀɴ ɪᴍᴀɢᴇ/ᴠɪᴅᴇᴏ ᴛᴏ ᴍᴀᴋᴇ ᴀ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
+        }
+
+        if (/image|video/.test(mime)) {
+            let media = await quoted.download();
+            await socket.sendMessage(from, { 
+                sticker: media 
+            }, { quoted: msg });
+        } else {
+            await socket.sendMessage(from, { text: '❌ ᴏɴʟʏ ɪᴍᴀɢᴇ ᴏʀ ᴠɪᴅᴇᴏ ᴀʟʟᴏᴡᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
+        }
+    } catch (error) {
+        console.error('Error in .sticker command:', error);
+        await socket.sendMessage(from, { text: '💔 ғᴀɪʟᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ. ᴛʀʏ ᴀɢᴀɪɴ!' }, { quoted: msg });
+    }
+    break;
+}
 			  
 ///////////////////////////////////////////////////
 			  case 'system': {
