@@ -1417,32 +1417,91 @@ END:VCARD`
     try {
       switch (command) {
 ////////////////////////////////////////////
-			  case 'sticker':
-case 's': {
-    await socket.sendMessage(sender, { react: { text: '🪷', key: msg.key } });
+			  case 'time': {
+try {
 
-    try {
-        let quoted = msg.quoted ? msg.quoted : msg;
-        let mime = (quoted.msg || quoted).mimetype || '';
-
-        if (!mime) {
-            return socket.sendMessage(from, { text: '⚠️ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴀɴ ɪᴍᴀɢᴇ/ᴠɪᴅᴇᴏ ᴛᴏ ᴍᴀᴋᴇ ᴀ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
-        }
-
-        if (/image|video/.test(mime)) {
-            let media = await quoted.download();
-            await socket.sendMessage(from, { 
-                sticker: media 
-            }, { quoted: msg });
-        } else {
-            await socket.sendMessage(from, { text: '❌ ᴏɴʟʏ ɪᴍᴀɢᴇ ᴏʀ ᴠɪᴅᴇᴏ ᴀʟʟᴏᴡᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ!' }, { quoted: msg });
-        }
-    } catch (error) {
-        console.error('Error in .sticker command:', error);
-        await socket.sendMessage(from, { text: '💔 ғᴀɪʟᴇᴅ ᴛᴏ ᴄʀᴇᴀᴛᴇ sᴛɪᴄᴋᴇʀ. ᴛʀʏ ᴀɢᴀɪɴ!' }, { quoted: msg });
-    }
-    break;
+await socket.sendMessage(sender,{
+react:{
+text:"⏰",
+key:msg.key
 }
+});
+
+
+const BOT_NAME = "💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘";
+
+
+const slTime = new Date(
+new Date().toLocaleString("en-US",{
+timeZone:"Asia/Colombo"
+})
+);
+
+
+const hour = slTime.getHours();
+
+let greeting;
+
+if(hour < 5) greeting = "🌌 සුභ අලුයම";
+else if(hour < 12) greeting = "🌅 සුභ උදෑසනක්";
+else if(hour < 18) greeting = "🌞 සුභ දවල්";
+else if(hour < 22) greeting = "🌙 සුභ සන්ධ්‍යාවක්";
+else greeting = "🦉 සුභ රාත්‍රියක්";
+
+
+const ram = (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2);
+
+
+let uptime = process.uptime();
+
+let days = Math.floor(uptime / 86400);
+let hours = Math.floor((uptime % 86400) / 3600);
+let mins = Math.floor((uptime % 3600) / 60);
+
+
+let caption = `
+╭━━━〔 ⏰ TIME SYSTEM 〕━━━╮
+
+💚 ${BOT_NAME}
+
+🌍 Greeting
+➤ ${greeting}
+
+📅 Date
+➤ ${getSriLankaTimestamp()}
+
+💾 RAM Usage
+➤ ${ram} MB
+
+⚡ Runtime
+➤ ${days}D ${hours}H ${mins}M
+
+╰━━━━━━━━━━━━━━╯
+
+✨ Powered By
+${BOT_NAME}
+`;
+
+
+await socket.sendMessage(sender,{
+text:caption
+},{
+quoted:msg
+});
+
+
+} catch(e){
+
+console.log("Time Error:",e);
+
+reply(`❌ Time Error
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+}
+
+break;
+			  }
 			  
 ///////////////////////////////////////////////////
 			  case 'system': {
