@@ -1417,39 +1417,78 @@ END:VCARD`
     try {
       switch (command) {
 ////////////////////////////////////////////
-			  case 's':
-case 'sticker': {
+			  case 'ig':
+case 'instagram': {
 try {
 
-if(!quoted)
-return reply(`❌ Photo / Video එකකට reply කරලා .s දෙන්න
+if(!q) return reply(`╭━━━〔 📸 INSTAGRAM 〕━━━╮
 
-💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+❌ Instagram link එක දෙන්න
 
+Example:
+.ig https://instagram.com/reel/xxxxx
 
-let mime = quoted.mimetype || quoted.msg?.mimetype || "";
-
-if(!mime.includes("image") && !mime.includes("video"))
-return reply(`❌ Image හෝ short video එකකට reply කරන්න
-
-💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘
+╰━━━━━━━━━━━━━━╯`);
 
 
-let media = await conn.downloadMediaMessage(quoted);
+const axios = require("axios");
+
+const API_BASE = "https://chama-movie-api.koyeb.app";
+const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
 
-await conn.sendMessage(from,{
-sticker: media
-},{
-quoted: mek
+let url = `${API_BASE}/api/v1/instagram/download?url=${encodeURIComponent(q)}&apiKey=${API_KEY}`;
+
+
+let res = await axios.get(url,{
+timeout:15000
 });
 
 
-} catch(e){
+let data = res.data.data || res.data.result || res.data;
 
-console.log("STICKER ERROR:", e);
 
-reply(`❌ Sticker Error
+let video = data.url || 
+            data.download ||
+            data.video ||
+            data.media;
+
+
+if(!video)
+return reply(`❌ Instagram media හම්බුනේ නෑ
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+
+await conn.sendMessage(from,{
+video:{
+url:video
+},
+caption:`
+╭━━━〔 📸 INSTAGRAM 〕━━━╮
+
+💚 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 😘
+
+✅ Download Success
+
+📥 Type : Instagram Media
+⚡ Speed : Fast
+
+╰━━━━━━━━━━━━━━╯
+
+✨ 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 Bot
+`
+},{
+quoted:mek
+});
+
+
+}catch(e){
+
+console.log("IG ERROR:",e.response?.data || e.message);
+
+reply(`❌ Instagram Error
 
 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
