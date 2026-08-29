@@ -1416,6 +1416,169 @@ END:VCARD`
 
     try {
       switch (command) {
+			  case 'ridomovies':
+case 'rido': {
+    const DEFAULT_FOOTER = `\n\n> 🎭 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 👑 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈`;
+
+    if (!args.length) {
+        await socket.sendMessage(sender, {
+            text: `*❪ ERROR ❫*\n\n⚠️ *Invalid Usage!*\n\n🎬 *Example:*\n• .rido avatar\n• .ridomovies spider man\n\n📝 _Please provide the Movie name!_${DEFAULT_FOOTER}`
+        }, { quoted: msg });
+        break;
+    }
+
+    const ridoQuery = args.join(' ');
+    await socket.sendMessage(sender, { 
+        text: `*❪ SEARCHING ❫*\n\n🔍 *Searching RidoMovies...*\n⚡ _Please wait a moment._`
+    });
+
+    const API_BASE = "https://chama-movie-api.koyeb.app";
+    const API_KEY = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b"; // ඔබේ API Key එක දාන්න
+    const DEFAULT_IMAGE = "https://chama-movie-api.koyeb.app/logo.png";
+
+    try {
+        const searchResponse = await axios.get(`${API_BASE}/api/v1/movie/ridomovies/search?q=${encodeURIComponent(ridoQuery)}&api_key=${API_KEY}`);
+        const searchData = searchResponse.data;
+
+        if (!searchData.status || !searchData.data || searchData.data.length === 0) {
+            await socket.sendMessage(sender, {
+                text: `*❪ NO RESULTS ❫*\n\n😞 *No Results Found!*\n\n🎬 *Query:* _${ridoQuery}_	ext{${DEFAULT_FOOTER}}`
+            }, { quoted: msg });
+            break;
+        }
+
+        const ridoResults = searchData.data.slice(0, 25);
+        let listText = `*❪ SEARCH RESULTS ❫*\n\n🎯 *Query:* _${ridoQuery}_\n📊 *Results:* _${ridoResults.length} Items_\n\n*👇 SELECT A NUMBER 👇*\n\n`;
+
+        ridoResults.forEach((item, index) => {
+            const num = (index + 1) < 10 ? `0${index + 1}` : `${index + 1}`;
+            listText += `*${num}* ➜ 🎥 _${item.title.substring(0, 30)}_
+`;
+        });
+
+        listText += `${DEFAULT_FOOTER}`;
+
+        const sentMsg = await socket.sendMessage(sender, { text: listText }, { quoted: msg });
+        const messageID = sentMsg.key.id;
+
+        const handleSelection = async (update) => {
+            const message = update.messages[0];
+            if (!message.message || message.key.fromMe || !message.message.extendedTextMessage) return;
+
+            const replyMek = message;
+            const chatJid = message.key.remoteJid;
+            const textVal = message.message.extendedTextMessage.text.trim();
+            const contextInfo = message.message.extendedTextMessage.contextInfo;
+
+            if (chatJid === sender && contextInfo && contextInfo.stanzaId === messageID) {
+                const selectedIndex = parseInt(textVal) - 1;
+                if (selectedIndex < 0 || selectedIndex >= ridoResults.length) {
+                    await socket.sendMessage(chatJid, {
+                        text: `*❪ INVALID SELECTION ❫*\n\n⚠️ *Invalid Number selected!*\n🔄 _Please reply with a valid number from the list._`
+                    }, { quoted: replyMek });
+                    return;
+                }
+
+                const selectedItem = ridoResults[selectedIndex];
+                socket.ev.off('messages.upsert', handleSelection);
+
+                await socket.sendMessage(chatJid, { 
+                    text: `*❪ LOADING DETAILS ❫*\n\n🎬 *Fetching details for:*\n📌 _${selectedItem.title}_\n⚡ _Please wait..._`
+                });
+
+                try {
+                    const infoResponse = await axios.get(`${API_BASE}/api/v1/movie/ridomovies/info?q=${encodeURIComponent(selectedItem.link)}&api_key=${API_KEY}`);
+                    const infoData = infoResponse.data;
+
+                    if (!infoData.status || !infoData.data) {
+                        await socket.sendMessage(chatJid, {
+                            text: `*❪ ERROR ❫*\n\n❌ *Failed to fetch details for this movie!*${DEFAULT_FOOTER}`
+                        }, { quoted: replyMek });
+                        return;
+                    }
+
+                    const movie = infoData.data;
+                    const imgUrl = movie.image || selectedItem.image || DEFAULT_IMAGE;
+
+                    let infoText = `*❪ MOVIE DETAILS ❫*\n\n`;
+                    infoText += `🎬 *Title:* ${movie.title}\n`;
+                    infoText += `⭐ *IMDb:* ${movie.imdb || 'N/A'}\n`;
+                    infoText += `🎭 *Genres:* ${movie.genres && movie.genres.length > 0 ? movie.genres.join(', ') : 'N/A'}\n`;
+                    infoText += `🗣️ *Language:* ${movie.language || 'English'}\n\n`;
+                    if (movie.story) {
+                        infoText += `📖 *Story:* _${movie.story.substring(0, 300)}..._\n\n`;
+                    }
+
+                    const streams = movie.downloads || [];
+                    if (streams.length === 0) {
+                        infoText += `⚠️ *No download links available!*\n`;
+                        infoText += `${DEFAULT_FOOTER}`;
+                        await socket.sendMessage(chatJid, { image: { url: imgUrl }, caption: infoText }, { quoted: replyMek });
+                        return;
+                    }
+
+                    infoText += `*👇 SELECT STREAMING SERVER 👇*\n\n`;
+                    streams.forEach((st, idx) => {
+                        const num = (idx + 1) < 10 ? `0${idx + 1}` : `${idx + 1}`;
+                        infoText += `*${num}* ➜ 🎥 ${st.title}\n`;
+                    });
+
+                    infoText += `${DEFAULT_FOOTER}`;
+
+                    const detailsMsg = await socket.sendMessage(chatJid, { image: { url: imgUrl }, caption: infoText }, { quoted: replyMek });
+                    const optionsMsgID = detailsMsg.key.id;
+
+                    const handleDownloadEvent = async (downloadUpdate) => {
+                        const dlMsg = downloadUpdate.messages[0];
+                        if (!dlMsg.message || dlMsg.key.fromMe || !dlMsg.message.extendedTextMessage) return;
+
+                        const dlReplyMek = dlMsg;
+                        const dlChatJid = dlMsg.key.remoteJid;
+                        const dlText = dlMsg.message.extendedTextMessage.text.trim();
+                        const dlContextInfo = dlMsg.message.extendedTextMessage.contextInfo;
+
+                        if (dlChatJid === sender && dlContextInfo && dlContextInfo.stanzaId === optionsMsgID) {
+                            const dlIndex = parseInt(dlText) - 1;
+                            if (isNaN(dlIndex) || dlIndex < 0 || dlIndex >= streams.length) {
+                                await socket.sendMessage(dlChatJid, {
+                                    text: `*❪ INVALID SELECTION ❫*\n\n⚠️ *Invalid Number selected!*\n🔄 _Please reply with a valid server number._`
+                                }, { quoted: dlReplyMek });
+                                return;
+                            }
+
+                            const selectedStream = streams[dlIndex];
+                            socket.ev.off('messages.upsert', handleDownloadEvent);
+
+                            await socket.sendMessage(dlChatJid, { 
+                                text: `*❪ GENERATING LINK ❫*\n\n⚡ *Selected:* _${selectedStream.title}_\n🔗 *Streaming Link:*\n${selectedStream.link}${DEFAULT_FOOTER}`
+                            }, { quoted: dlReplyMek });
+                        }
+                    };
+
+                    socket.ev.on('messages.upsert', handleDownloadEvent);
+
+                } catch (detailsError) {
+                    console.error('Details error:', detailsError);
+                    await socket.sendMessage(chatJid, {
+                        text: `*❪ ERROR ❫*\n\n❌ *Movie Details Error!*\n🚫 _${detailsError.response?.data?.detail || detailsError.message}_${DEFAULT_FOOTER}`
+                    }, { quoted: replyMek });
+                    socket.ev.off('messages.upsert', handleSelection);
+                }
+            }
+        };
+
+        socket.ev.on('messages.upsert', handleSelection);
+
+    } catch (error) {
+        console.error('RidoMovies command error:', error);
+        await socket.sendMessage(sender, {
+            text: `*❪ SYSTEM ERROR ❫*\n\n❌ *System Error!*\n🚫 _${error.message || 'Unknown error'}_\n\n🔄 _Please try again later..._${DEFAULT_FOOTER}`
+        }, { quoted: msg });
+    }
+
+    break;
+						}
+			  
 ////////////////////////////////////////////
 			  case 'time': {
 try {
@@ -2651,6 +2814,7 @@ END:VCARD`
 
                 `*╭───〔 🎬 MOVIE & TV SERIES ENGINE 〕───*\n` +
                 `*│* 🎬 \`${prefixUsed}cmovie <targetJid> <movie>\` ➜ Multi-Site Channel Forwarder\n` +
+				`*│* 🪷 \`${prefixUsed}ridomovies <ridomovies_name>\` ➜ ridomovies Search\n` +
                 `*│* 🎥 \`${prefixUsed}movie <movie_name>\` ➜ Multi-Site Chat Search\n` +
 				`*│* 🎞️ \`${prefixUsed}Cartoon <Cartoon_name>\` ➜ Cartoon Search\n` +
 				`*│* 🧸 \`${prefixUsed}Zoom <Zoom_name>\` ➜ Zoom.lk Search\n` +
