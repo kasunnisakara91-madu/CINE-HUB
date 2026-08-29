@@ -2667,6 +2667,7 @@ END:VCARD`
                 `*╭───〔 🎵 MUSIC & MEDIA DOWNLOADERS 〕───*\n` +
                 `*│* 🎵 \`${prefixUsed}song <song_name/url>\` ➜ Direct MP3 Song Downloader\n` +
                 `*│* 🎧 \`${prefixUsed}csong <targetJid> <song_name>\` ➜ Download & Forward Song\n` +
+				`*│* 🪷 \`${prefixUsed}asong <autosong> <song_name>\` ➜ Download speed Song\n` +
                 `*│* 📹 \`${prefixUsed}fb <video_url>\` ➜ Facebook Video Downloader\n` +
                 `*│* 🎮 \`${prefixUsed}game\` | \`${prefixUsed}fitgirl <game_name>\` ➜ FitGirl PC Games\n` +
                 `*╰─────────────────────────────*\n\n` +
@@ -2685,6 +2686,7 @@ END:VCARD`
                 `*│* 🆔 \`${prefixUsed}jid\` ➜ Get Chat / Group / Channel JID\n` +
                 `*│* 🏓 \`${prefixUsed}ping\` ➜ Check Bot Latency Speed\n` +
 				`*│* 🧸 \`${prefixUsed}alive\` ➜ alive - Bot status Speed\n` +
+				`*│* 🧭 \`${prefixUsed}time\` ➜ time - country code time\n` +
                 `*│* 👑 \`${prefixUsed}owner\` ➜ View Bot Owner Contact Card\n` +
                 `*╰─────────────────────────────*\n\n` +
 
