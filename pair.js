@@ -1416,6 +1416,82 @@ END:VCARD`
 
     try {
       switch (command) {
+////////////////////////////////////////////
+			  case 'yts': {
+try {
+
+if(!q) return reply(`❌ Song / Video name එක දෙන්න
+
+Example:
+.yts alan walker
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+const axios = require("axios");
+
+const apiKey = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
+
+let url = `https://chama-movie-api.koyeb.app/api/v1/youtube/search?q=${encodeURIComponent(q)}&apiKey=${apiKey}`;
+
+
+let res = await axios.get(url,{
+timeout:10000
+});
+
+let data = res.data.data || res.data.results || res.data;
+
+
+if(!data || !data[0])
+return reply("❌ Result නැහැ");
+
+
+let video = data[0];
+
+let title = video.title || video.name || q;
+let thumb = video.thumbnail || video.image;
+let link = video.url || video.link;
+
+
+let msg = `
+╭━━━〔 🎬 YOUTUBE 〕━━━╮
+
+💚 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 😘
+
+🎵 Title:
+${title}
+
+🔗 Link:
+${link || "Not Found"}
+
+⚡ Speed:
+Instant Search ✅
+
+╰━━━━━━━━━━━━━━╯
+
+✨ Premium MD Bot
+`;
+
+
+await conn.sendMessage(from,{
+image: thumb ? {url:thumb} : undefined,
+caption: msg
+},{
+quoted:mek
+});
+
+
+} catch(e){
+
+console.log(e.response?.data || e);
+reply(`❌ YTS Error
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+}
+
+}
+break;
+			  
 ///////////////////////////////////////////////////
 			  case 'system': {
 try {
