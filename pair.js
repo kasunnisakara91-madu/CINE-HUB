@@ -1417,7 +1417,47 @@ END:VCARD`
     try {
       switch (command) {
 ////////////////////////////////////////////
-			  
+			  case 'sticker':
+case 's': {
+try {
+
+if(!quoted)
+return reply(`❌ Photo/Video එකකට reply කරලා .s දෙන්න
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+
+let mime = quoted.mimetype || "";
+
+
+if(!/image|video/.test(mime))
+return reply(`❌ Image හෝ Video විතරයි
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+
+let media = await quoted.download();
+
+
+await conn.sendMessage(from,{
+sticker: media
+},{
+quoted:mek
+});
+
+
+} catch(e){
+
+console.log(e);
+
+reply(`❌ Sticker Error
+
+💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
+
+}
+
+}
+break;
 			  
 ///////////////////////////////////////////////////
 			  case 'system': {
