@@ -1426,7 +1426,7 @@ const axios = require("axios");
 
 const apiKey = "chama_api_23c3e7ffb034f25cf474f6d7ac266f9b";
 
-let url = `https://chama-movie-api.koyeb.app/api/v1/movies/cinesubz/search?q=${encodeURIComponent(q)}&apiKey=${apiKey}`;
+let url = `https://chama-movie-api.koyeb.app/=${encodeURIComponent(q)}&apiKey=${apiKey}`;
 
 let res = await axios.get(url);
 
