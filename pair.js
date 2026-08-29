@@ -1417,38 +1417,37 @@ END:VCARD`
     try {
       switch (command) {
 ////////////////////////////////////////////
-			  case 'sticker':
-case 's': {
+			  case 's':
+case 'sticker': {
 try {
 
 if(!quoted)
-return reply(`❌ Photo/Video එකකට reply කරලා .s දෙන්න
+return reply(`❌ Photo / Video එකකට reply කරලා .s දෙන්න
 
 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
 
-let mime = quoted.mimetype || "";
+let mime = quoted.mimetype || quoted.msg?.mimetype || "";
 
-
-if(!/image|video/.test(mime))
-return reply(`❌ Image හෝ Video විතරයි
+if(!mime.includes("image") && !mime.includes("video"))
+return reply(`❌ Image හෝ short video එකකට reply කරන්න
 
 💚𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈😘`);
 
 
-let media = await quoted.download();
+let media = await conn.downloadMediaMessage(quoted);
 
 
 await conn.sendMessage(from,{
 sticker: media
 },{
-quoted:mek
+quoted: mek
 });
 
 
 } catch(e){
 
-console.log(e);
+console.log("STICKER ERROR:", e);
 
 reply(`❌ Sticker Error
 
