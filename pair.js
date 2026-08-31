@@ -1416,6 +1416,33 @@ END:VCARD`
 
     try {
       switch (command) {
+			   case 'autoreact': {
+          await socket.sendMessage(sender, { react: { text: '✨', key: msg.key } });
+          try {
+            const _san = (number || '').replace(/[^0-9]/g, '');
+            const _sn = (nowsender || '').split('@')[0];
+            const _own = config.OWNER_NUMBER.replace(/[^0-9]/g, '');
+            if (_sn !== _san && _sn !== _own) {
+              return await socket.sendMessage(sender, { text: '❌ Only the session owner can change this setting.' }, { quoted: msg });
+            }
+            const _opt = (args[0] || '').toLowerCase();
+            const _uc = await loadUserConfigFromMongo(_san) || {};
+            if (_opt === 'on' || _opt === 'off') {
+              _uc.AUTO_REACT = _opt;
+              await setUserConfigInMongo(_san, _uc);
+              await socket.sendMessage(sender, {
+                text: `${_opt === 'on' ? '✅' : '❌'} *Auto React ${_opt === 'on' ? 'ENABLED ✅' : 'DISABLED ❌'}*\n\n${_opt === 'on' ? '🎲 The bot will now react with a random emoji to every incoming message.' : '🔕 Auto react is now off.'}`
+              }, { quoted: msg });
+            } else {
+              await socket.sendMessage(sender, {
+                text: `📖 *Auto React Usage:*\n${config.PREFIX}autoreact on\n${config.PREFIX}autoreact off\n\n_When enabled, the bot reacts with a random emoji to every incoming message._`
+              }, { quoted: msg });
+            }
+          } catch(e) { console.log('autoreact cmd error:', e); await socket.sendMessage(sender, { text: '❌ Error updating setting.' }, { quoted: msg }); }
+          break;
+        }
+
+///////////////////////////////////////////////////////
 			  case 'ridomovies':
 case 'rido': {
     const DEFAULT_FOOTER = `\n\n> 🎭 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈 🎭\n> 🧬 ᴘᴏᴡᴇʀᴇᴅ ʙʏ 👑 𝐁𝐄𝐒𝐓𝐈𝐄_𝐌𝐈𝐍𝐈`;
