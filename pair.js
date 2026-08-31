@@ -1416,24 +1416,186 @@ END:VCARD`
 
     try {
       switch (command) {
-			   case 'chatjid': {
-          const rawJid = msg.key.remoteJid;
-          const resolvedJid = from;
-          const info = `*╭─────────────────────────╮*
-*        🔗 CHAT JID INFO          *
-*╰─────────────────────────╯*
+			   case 'autosong': {
+    try {
 
-📂 *Raw JID:* 
-\`${rawJid}\`
+        const axios = require("axios");
 
-✅ *Resolved JID:* 
-\`${resolvedJid}\`
+        const userNumber = (number || '').replace(/[^0-9]/g,'');
 
-*━━━━━━━━━━━━━━━━━━━━━━━━━*
-> *Note:* Resolved JID shows the standard @s.whatsapp.net format.`;
-          await socket.sendMessage(from, { text: info });
-          break;
-			   }
+        const text = args.join(" ").trim();
+
+
+        if (!global.autoSongTimers) {
+            global.autoSongTimers = new Map();
+        }
+
+
+        if (text.toLowerCase() === "off") {
+
+            const oldTimer = global.autoSongTimers.get(userNumber);
+
+            if (oldTimer) {
+                clearInterval(oldTimer);
+                global.autoSongTimers.delete(userNumber);
+            }
+
+
+            await socket.sendMessage(sender,{
+                text:
+`🛑 *AutoSong Disabled*
+
+Auto song stopped successfully.`
+            },{quoted:msg});
+
+            break;
+        }
+
+
+
+        const parts = text.split(",");
+
+
+        if(parts.length < 2){
+
+            await socket.sendMessage(sender,{
+                text:
+`❌ Usage:
+
+.autosong jid,song name,time
+
+Example:
+
+.autosong 120363xxxx@newsletter,Shape of You,30`
+            },{quoted:msg});
+
+            break;
+        }
+
+
+
+        let jid = parts[0].trim();
+
+        let time = 30;
+
+        let song = parts.slice(1).join(",").trim();
+
+
+
+        let last = song.split(",").pop().trim();
+
+
+        if(!isNaN(last)){
+
+            time = Number(last);
+
+            song = song.replace(","+last,"").trim();
+
+        }
+
+
+
+        if(!jid.includes("@")){
+
+            jid = jid + "@newsletter";
+
+        }
+
+
+
+        async function sendSong(){
+
+            try {
+
+                const api = await axios.get(
+                    "https://chama-movie-api.koyeb.app/song",
+                    {
+                        params:{
+                            query:song
+                        },
+                        headers:{
+                            "x-api-key":"chama_api_23c3e7ffb034f25cf474f6d7ac266f9b"
+                        }
+                    }
+                );
+
+
+                if(!api.data.url) return;
+
+
+                await socket.sendMessage(jid,{
+                    audio:{
+                        url:api.data.url
+                    },
+                    mimetype:"audio/mpeg"
+                });
+
+
+            } catch(err){
+
+                console.log("AutoSong Error:",err.message);
+
+            }
+
+        }
+
+
+
+        // old timer remove
+        const old = global.autoSongTimers.get(userNumber);
+
+        if(old){
+            clearInterval(old);
+        }
+
+
+
+        // first send
+        await sendSong();
+
+
+
+        // auto send
+        const timer = setInterval(()=>{
+
+            sendSong();
+
+        }, time * 60 * 1000);
+
+
+
+        global.autoSongTimers.set(userNumber,timer);
+
+
+
+        await socket.sendMessage(sender,{
+            text:
+`✅ *AutoSong Enabled*
+
+📡 Target: ${jid}
+
+🎵 Song: ${song}
+
+⏱️ Every ${time} minutes
+
+Stop:
+.autosong off`
+        },{quoted:msg});
+
+
+
+    } catch(e){
+
+        console.log(e);
+
+        await socket.sendMessage(sender,{
+            text:`❌ Error: ${e.message}`
+        },{quoted:msg});
+
+    }
+
+break;
+		}
 
 ///////////////////////////////////////////////////////
 			  case 'ridomovies':
